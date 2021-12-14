@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Run Club!</title>
+        <link rel="stylesheet" href="{{url_for('static', filename='css/main.css')}}">
+    </head>
+    <body>
+    <br>
+        <img src="https://www.fastrunning.com/wp-content/uploads/2018/03/running-in-group.jpg" width="100" height="100">
+        <br>
+        <form action="greet" method="post">
+            {% for message in get_flashed_messages()%}
+                <p> {{message}} </p>
+            {% endfor %}
+            <br>
+            <input type="text" name="name_input">
+            <br>
+            <br>
+            <input type="submit" value="Run Club" id="greet">
+        </form>
+        <br>
+
+        <table>
+            <tr>
+                <th>    Name   </th>
+                <th>    Distance (km)    </th>
+            </tr>
+            <tr>
+                <td>Charlie</td>
+                <td>10km</td>
+            </tr>
+            <tr>
+                <td>Matthew</td>
+                <td>12km</td>
+            </tr>
+            <tr>
+                <td>George</td>
+                <td>12km</td>
+            </tr>
+            <tr>
+                <td>Rhys</td>
+                <td>12km</td>
+            </tr>
+            <tr>
+                <td>Finch</td>
+                <td>12km</td>
+            </tr>
+        </table>
+
+
+    </body>
+</html>

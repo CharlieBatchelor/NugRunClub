@@ -1,0 +1,54 @@
+body {
+    background-color: DimGrey;
+    text-align: center;
+}
+
+p {
+    color: white;
+    font-family: Shanti;
+    font-size: 1.2em;
+    margin: 20px;
+}
+
+img {
+    margin 60px 0 30px 0;
+    width: 250px;
+}
+
+input{
+    width: 300px;
+    height: 50px;
+    margin: 20px;
+    border; none;
+    border-radius: 10px;
+    font-family: Shanti;
+    text-align: center;
+    font-size: 1.3em;
+}
+
+input:focus {
+    border: solid 5px #8B0000;
+    outline: none;
+}
+
+#greet {
+    background-color: Cornflowerblue;
+    color: white;
+    width: 200px;
+}
+
+#greet:hover {
+    background-color: DarkBlue;
+    cursor: pointer;
+
+}
+
+table, th, td {
+  border: 1px solid black;
+  padding: 5px;
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+
+}
+
