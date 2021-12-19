@@ -1,18 +1,19 @@
 body {
-    background-color: DimGrey;
+    background-color: AliceBlue;
     text-align: center;
 }
 
 p {
     color: white;
-    font-family: Shanti;
+    font-family: Verdana;
     font-size: 1.2em;
     margin: 20px;
 }
 
 img {
-    margin 60px 0 30px 0;
-    width: 250px;
+    margin 300px 0 50px 0;
+    width: 500px;
+    height: 200px;
 }
 
 input{
@@ -21,7 +22,7 @@ input{
     margin: 20px;
     border; none;
     border-radius: 10px;
-    font-family: Shanti;
+    font-family: Verdana;
     text-align: center;
     font-size: 1.3em;
 }
@@ -32,23 +33,32 @@ input:focus {
 }
 
 #greet {
-    background-color: Cornflowerblue;
+    background-color: CadetBlue;
     color: white;
     width: 200px;
 }
 
 #greet:hover {
-    background-color: DarkBlue;
+    background-color: DarkSeaGreen;
     cursor: pointer;
 
 }
 
 table, th, td {
-  border: 1px solid black;
+  border-bottom: 1px solid #ddd;
   padding: 5px;
-  width: 50%;
+  width: 40%;
   margin-left: auto;
   margin-right: auto;
+  border-collapse: collapse;
+  font-family: Verdana;
 
 }
 
+tr:nth-child(even) {
+    background-color: CadetBlue;
+}
+
+tr:nth-child(odd) {
+    background-color: DarkSeaGreen;
+}
