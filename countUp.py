@@ -1,128 +1,87 @@
 # This script should read the downloaded strava data for everyone, the downloaded google sheet in as array,
 # update my(all) bits and then save the new googleData.csv to be uploaded to google
 import pandas as pd
-from matplotlib import pyplot as plt
-import numpy as np
 from datetime import datetime
 
-# Date Variable
+# My files to use when updating the google dataframe
+file_list = ['charlieActivities.csv', 'matthewActivities.csv', 'georgeActivities.csv', 'rhysActivities.csv', "finchActivities.csv"]
+name = ["Charlie", "Matthew", "George", "Rhys", "Finch"]
+
+# Read google sheet data to a data frame
+googleData = pd.read_csv("googleData.csv")
+# Date Variable - eg 2022-02-01
 now = datetime.now()
 stringDate = now.strftime("%Y-%m")
-# Run string to compare type later
-run = "Run"
-# totalDistance variables
+# stringDate = '2022-04' #artifici  al string to pull back month 2022-xx
+run = "Run" # Run string to compare type later
+group_pace = 0
+group_pace_sum = 0
+group_all_runs = 0
 
-# # Read new csv files in - print current google data to terminal
-# CHARLIE =======================================================
-charlie = pd.read_csv("charlieActivities.csv", sep=",", header=0)
-charlieDistance = charlie["distance"]
-charlieExType = charlie["type"]
-charlieDate = charlie["start_date_local"]
-charlieNum = len(charlieDistance)
-charlieTotDistance = 0
+# loop over all input files and get data to right people
+for i, input_file in enumerate(file_list):
+    input_file = "./activities/" + str(input_file)
+    data = pd.read_csv(input_file, sep=",", header=0)
+    dis = data["distance"]
+    type = data["type"]
+    date = data["start_date_local"]
+    elev = data["total_elevation_gain"]
+    mov_t = data["moving_time"]
+    no_acts = len(dis)  # Number of activities
+    tot_distance = 0 # total distance for month
+    tot_el = 0
+    avg_pace_sum = 0
+    all_runs = 0 # all runs, below 2km too for pace normalisation
+    avg_el = 0
+    total_2k = 0  # number of runs for month, above 2km!
+    total_5k = 0
+    total_10k = 0
 
-print("Calculating Charlie's Distance...")
-for i in range(charlieNum):
-    date = charlieDate[i][0:7] # correct date for comparison
-    # If it's a run, and it's within the current month then count up
-    if charlieExType[i] == run and date == stringDate:
-        charlieTotDistance = charlieTotDistance + charlieDistance[i]
-charlieTotDistance = charlieTotDistance/1000  # to km
-print(charlieTotDistance)
+    # Tally up the stuff we want to send to google doc
+    for j in range(no_acts):
+        start_date = date[j][0:7]
+        if type[j] == run and start_date == stringDate:
+            tot_distance += dis[j]
+            tot_el += elev[j]
+            all_runs += 1
+            avg_pace_sum += (mov_t[j])/(dis[j]/1000)
 
-# RHYS ==========================================================
-rhys = pd.read_csv("rhysActivities.csv", sep=",", header=0)
-rhysDistance = rhys["distance"]
-rhysExType = rhys["type"]
-rhysDate = rhys["start_date_local"]
-rhysTotDistance = 0
-rhysNum = len(rhysDistance)
+            if dis[j] >= 2000:
+                total_2k += 1
+            if dis[j] >= 5000:
+                total_5k += 1
+            if dis[j] >= 10000:
+                total_10k += 1
 
-print("Calculating Rhys's Distance...")
+        # Can only do average pace if there are some runs!
+        if all_runs != 0:
+            avg_pace = avg_pace_sum/all_runs
+            group_pace_sum += avg_pace_sum
+            group_all_runs += all_runs
+            mins = avg_pace // 60
+            secs = avg_pace % 60
+            pace = str(int(mins)) + ":" + str(int(secs))
+            avg_el = tot_el/all_runs
 
-for i in range(rhysNum):
-    date = rhysDate[i][0:7]  # correct date for comparison
-    # If it's a run, and it's within the current month then count up
-    if rhysExType[i] == run and date == stringDate:
-        rhysTotDistance += rhysDistance[i]
-rhysTotDistance = rhysTotDistance/1000  # to km
-print(rhysTotDistance)
+        if(all_runs == 0):
+            pace = str(0)
 
-# GEORGE ========================================================
-george = pd.read_csv("georgeActivities.csv", sep=",", header=0)
-georgeDistance = george["distance"]
-georgeExType = george["type"]
-georgeDate = george["start_date_local"]
-georgeTotDistance = 0
-georgeNum = len(georgeDistance)
+    for k, n in enumerate(googleData["Name"]):
+        if n == name[i]:
+            googleData.loc[k, "Distance"] = tot_distance/1000
+            googleData.loc[k, "NumRuns2k"] = total_2k
+            googleData.loc[k, "NumRuns5k"] = total_5k
+            googleData.loc[k, "NumRuns10k"] = total_10k
+            googleData.loc[k, "TotalElevation"] = tot_el
+            googleData.loc[k, "AveragePace"] = pace
+            googleData.loc[k, "AvgElPerRun"] = avg_el
 
-print("Calculating George's Distance...")
-for i in range(georgeNum):
-    date = georgeDate[i][0:7]  # correct date for comparison
-    # If it's a run, and it's within the current month then count up
-    if georgeExType[i] == run and date == stringDate:
-        georgeTotDistance += georgeDistance[i]
-georgeTotDistance = georgeTotDistance/1000  # to km
-print(georgeTotDistance)
-
-# MATTHEW ========================================================
-matthew = pd.read_csv("matthewActivities.csv", sep=",", header=0)
-matthewDistance = matthew["distance"]
-matthewExType = matthew["type"]
-matthewDate = matthew["start_date_local"]
-matthewTotDistance = 0
-matthewNum = len(matthewDistance)
-print("Calculating Matthew's Distance...")
-
-for i in range(matthewNum):
-    date = matthewDate[i][0:7]  # correct date for comparison
-    # If it's a run, and it's within the current month then count up
-    if matthewExType[i] == run and date == stringDate:
-        matthewTotDistance += matthewDistance[i]
-matthewTotDistance = matthewTotDistance/1000  # to km
-print(matthewTotDistance)
-
-# FINCH ========================================================
-# finch = pd.read_csv("finchActivities.csv", sep=",", header=0)
-# finchDistance = finch["distance"]
-# finchExType = finch["type"]
-# finchDate = finch["start_date_local"]
-# finchTotDistance = 0
-# finchNum = len(finchDistance)
-#
-# print("Calculating Finch's Distance...")
-#
-# for i in range(matthewNum):
-#     date = finchDate[i][0:7] # correct date for comparison
-#     # If it's a run, and it's within the current month then count up
-#     if finchExType[i] == run and date == stringDate:
-#         finchTotDistance += finchDistance[i]
-# finchTotDistance = finchTotDistance/1000  # to km
-# print("Done: " + finchTotDistance)
-
-
-googleData = pd.read_csv("googleData.csv")
-print(googleData.to_string())
-
-# Fill new googleData.csv file
-distances = googleData["Distance"]
-names = googleData["Name"]
-
-# This is essentially code for a switch - probably could update this for efficiency later
-for i in range(len(googleData["Name"])):
-    if names[i] == "Charlie":
-        distances[i] = charlieTotDistance
-    if names[i] == "Rhys":
-        distances[i] = rhysTotDistance
-    if names[i] == "George":
-        distances[i] = georgeTotDistance
-    # if names[i] == "Finch":
-    #     distances[i] = finchTotDistance
-    if names[i] == "Matthew":
-        distances[i] = matthewTotDistance
+    # Reset variables for next person
+    tot_distance = 0
+    num_runs = 0
 
 # Reprint updated data
-print(googleData.to_string())
+# print(googleData.to_string())
 googleData.to_csv("googleData.csv", index=False)
 
 
