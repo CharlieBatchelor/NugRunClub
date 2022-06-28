@@ -1,5 +1,5 @@
 # Run Club App
-Developing area for Run Club app.
+Developing area for the Run Club app.
 
 Currently pulls Strava data every 15 minutes, does some data cleanup and basic analysis in python, republishing to google sheets for open group access.
 
