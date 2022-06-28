@@ -9,32 +9,32 @@ cd /Users/s2112263/Projects/RunClub || exit
 # Charlie
 curl -X POST https://www.strava.com/oauth/token\?client_id\=75401\&client_secret\=bb2111ddbaf0b4148ef1f9a632945e63fc6170b5\&grant_type\=refresh_token\&refresh_token\=7fd7e7bd86375240a154f8a31f6dd17cc46bd5bb > charlieToken.json
 CHARLIETOKEN=$(/usr/local/bin/jq .access_token charlieToken.json)
-CHARLIETOKEN=$(echo $CHARLIETOKEN | sed 's/"//g') # Remove occurancees of "
+CHARLIETOKEN=$(echo $CHARLIETOKEN | sed 's/"//g')
 
 ## Jenny Token
 #curl -X POST https://www.strava.com/oauth/token\?client_id\=75401\&client_secret\=bb2111ddbaf0b4148ef1f9a632945e63fc6170b5\&grant_type\=refresh_token\&refresh_token\=2aa5cdb6777ffb34d57400e9ccb61c1cb07aed45 > jennyToken.json
 #JENNYTOKEN=`/usr/local/bin/jq .access_token jennyToken.json`
-#JENNYTOKEN=`echo $JENNYTOKEN | sed 's/"//g'` # Remove occurancees of "
+#JENNYTOKEN=$(cho $JENNYTOKEN | sed 's/"//g')
 
 # Matthew
-curl -X POST https://www.strava.com/oauth/token\?client_id\=75401\&client_secret\=bb2111ddbaf0b4148ef1f9a632945e63fc6170b5\&grant_type\=refresh_token\&refresh_token\=2aa5cdb6777ffb34d57400e9ccb61c1cb07aed45 > matthewToken.json
-MATTHEWTOKEN=`/usr/local/bin/jq .access_token matthewToken.json`
-MATTHEWTOKEN=`echo $MATTHEWTOKEN | sed 's/"//g'` # Remove occurancees of "
+curl -X POST https://www.strava.com/oauth/token\?client_id\=75401\&client_secret\=bb2111ddbaf0b4148ef1f9a632945e63fc6170b5\&grant_type\=refresh_token\&refresh_token\=b8fb04fb661a9ae04c9190fe28c080d3d1371d53 > matthewToken.json
+MATTHEWTOKEN=$(/usr/local/bin/jq .access_token matthewToken.json)
+MATTHEWTOKEN=$(echo $MATTHEWTOKEN | sed 's/"//g')
 
-# Finch
-curl -X POST https://www.strava.com/oauth/token\?client_id\=75401\&client_secret\=bb2111ddbaf0b4148ef1f9a632945e63fc6170b5\&grant_type\=refresh_token\&refresh_token\=2aa5cdb6777ffb34d57400e9ccb61c1cb07aed45 > jennyToken.json
-FINCHTOKEN=`/usr/local/bin/jq .access_token jennyToken.json`
-FINCHTOKEN=`echo $FINCHTOKEN | sed 's/"//g'` # Remove occurancees of "
+## Finch
+#curl -X POST https://www.strava.com/oauth/token\?client_id\=75401\&client_secret\=bb2111ddbaf0b4148ef1f9a632945e63fc6170b5\&grant_type\=refresh_token\&refresh_token\=2aa5cdb6777ffb34d57400e9ccb61c1cb07aed45 > jennyToken.json
+#FINCHTOKEN=$(/usr/local/bin/jq .access_token finchToken.json)
+#FINCHTOKEN=$(cho $FINCHTOKEN | sed 's/"//g')
 
 # Rhys
 curl -X POST https://www.strava.com/oauth/token\?client_id\=75401\&client_secret\=bb2111ddbaf0b4148ef1f9a632945e63fc6170b5\&grant_type\=refresh_token\&refresh_token\=90656251dfc7dddee6824f6a0b31c71faef51839 > rhysToken.json
-RHYSTOKEN=`/usr/local/bin/jq .access_token jennyToken.json`
-RHYSTOKEN=`echo $RHYSTOKEN | sed 's/"//g'` # Remove occurancees of "
+RHYSTOKEN=$(/usr/local/bin/jq .access_token rhysToken.json)
+RHYSTOKEN=$(echo $RHYSTOKEN | sed 's/"//g')
 
 # George
 curl -X POST https://www.strava.com/oauth/token\?client_id\=75401\&client_secret\=bb2111ddbaf0b4148ef1f9a632945e63fc6170b5\&grant_type\=refresh_token\&refresh_token\=729a07c75e183ea989b0c5b946b0683f5a8ebe20 > georgeToken.json
-GEORGETOKEN=`/usr/local/bin/jq .access_token jennyToken.json`
-GEORGETOKEN=`echo $GEORGETOKEN | sed 's/"//g'` # Remove occurancees of "
+GEORGETOKEN=$(/usr/local/bin/jq .access_token georgeToken.json)
+GEORGETOKEN=$(echo $GEORGETOKEN | sed 's/"//g') # Remove occurancees of "
 
 # Grab profiles data and pass to json files (for testing)
 #curl -X GET 'https://www.strava.com/api/v3/athletes/59198223?access_token='$CHARLIETOKEN -H 'accept:application/json' > charlie.json
@@ -51,11 +51,11 @@ GEORGETOKEN=`echo $GEORGETOKEN | sed 's/"//g'` # Remove occurancees of "
 
 # Run python code to get all activities for all group and pass to <name>Activities.json file
 source ./venv/bin/activate # activate virtual environment
-python getCharlieActivities.py # run python code - keep venv active
-python getRhysActivities.py # run python code - keep venv active
-#python getMatthewActivities.py # run python code - keep venv active
-python getGeorgeActivities.py # run python code - keep venv active
-#python getFinchActivities.py # run python code - keep venv active
+python getCharlieActivities.py
+python getRhysActivities.py
+python getMatthewActivities.py
+python getGeorgeActivities.py
+#python getFinchActivities.py
 #deactivate #deactivate virtual environment
 
 # Download RunClub spreadsheet from google docs - Can remove once everyone is authorised
