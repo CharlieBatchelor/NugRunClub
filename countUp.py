@@ -5,9 +5,9 @@ from datetime import datetime
 
 # My files to use when updating the google dataframe
 file_list = ['charlieActivities.csv', 'matthewActivities.csv', 'georgeActivities.csv',
-             'rhysActivities.csv', "finchActivities.csv"]
+             'rhysActivities.csv', "finchActivities.csv", "jennyActivities.csv"]
 
-names = ["Charlie", "Matthew", "George", "Rhys", "Finch"]
+names = ["Charlie", "Matthew", "George", "Rhys", "Finch", "Jenny"]
 
 # Read google sheet data to a data frame
 googleData = pd.read_csv("googleData.csv")
@@ -15,7 +15,7 @@ googleData = pd.read_csv("googleData.csv")
 now = datetime.now()
 stringDate = now.strftime("%Y-%m")
 print("String date: ", stringDate)
-# stringDate = '2022-06' #artifici  al string to pull back month 2022-xx
+# stringDate = '2022-07' #artifici  al string to pull back month 2022-xx
 run = "Run" # Run string to compare type later
 group_pace = 0
 group_pace_sum = 0
@@ -45,6 +45,7 @@ for i, input_file in enumerate(file_list):
     # Tally up the stuff we want to send to google doc
     for j in range(no_acts):
         start_date = date[j][0:7]
+        # Make dis[j] > 2000 for the 2km condition
         if type[j] == run and start_date == stringDate and dis[j] != 0 and mov_t[j] != 0:
             tot_distance += dis[j]
             tot_el += elev[j]
@@ -65,8 +66,10 @@ for i, input_file in enumerate(file_list):
             group_all_runs += all_runs
             mins = avg_pace // 60
             secs = avg_pace % 60
-            pace = str(int(mins)) + ":" + str(int(secs))
+            pace = str(int(mins)) + ":" + str(int(secs)).zfill(2)
             avg_el = tot_el/all_runs
+
+        # print("Average pace of " + str(names[i]) + " is " + str(pace))
 
         if all_runs == 0:
             pace = str(0)
@@ -81,7 +84,7 @@ for i, input_file in enumerate(file_list):
             googleData.loc[k, "AveragePace"] = pace
             googleData.loc[k, "AvgElPerRun"] = avg_el
 
-# print(googleData.to_string())
+print(googleData.to_string())
 googleData.to_csv("googleData.csv", index=False)
 
 

@@ -12,15 +12,15 @@ numRuns = 0
 numEvents = 20
 
 # Choose who you want
-charlieActivities = pd.read_csv("charlieActivities.csv", sep=",", header=0)
+charlieActivities = pd.read_csv("../activities/charlieActivities.csv", sep=",", header=0)
 charlieActivities = charlieActivities.head(numEvents)
-matthewActivities = pd.read_csv("matthewActivities.csv", sep=",", header=0)
+matthewActivities = pd.read_csv("../activities/matthewActivities.csv", sep=",", header=0)
 matthewActivities = matthewActivities.head(numEvents)
-georgeActivities = pd.read_csv("georgeActivities.csv", sep=",", header=0)
+georgeActivities = pd.read_csv("../activities/georgeActivities.csv", sep=",", header=0)
 georgeActivities = georgeActivities.head(numEvents)
-rhysActivities = pd.read_csv("rhysActivities.csv", sep=",", header=0)
+rhysActivities = pd.read_csv("../activities/rhysActivities.csv", sep=",", header=0)
 rhysActivities = rhysActivities.head(numEvents)
-# activities = pd.read_csv("finchActivities.csv", sep=",", header=0)
+activities = pd.read_csv("../activities/finchActivities.csv", sep=",", header=0)
 
 
 charlie5paces = []

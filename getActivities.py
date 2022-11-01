@@ -4,8 +4,8 @@ import pandas as pd
 import json
 import csv
 
-jsons = ["tokens/charlieToken.json", "tokens/georgeToken.json", "tokens/matthewToken.json", "tokens/rhysToken.json", "tokens/finchToken.json"]
-csvs = ['charlieActivities.csv', 'georgeActivities.csv', 'matthewActivities.csv', 'rhysActivities.csv', "finchActivities.csv"]
+jsons = ["tokens/charlieToken.json", "tokens/georgeToken.json", "tokens/matthewToken.json", "tokens/rhysToken.json", "tokens/finchToken.json", "tokens/jennyToken.json"]
+csvs = ['charlieActivities.csv', 'georgeActivities.csv', 'matthewActivities.csv', 'rhysActivities.csv', "finchActivities.csv", "jennyActivities.csv"]
 
 for i, token in enumerate(jsons):
     # Get the tokens from file to connect to Strava
@@ -15,6 +15,7 @@ for i, token in enumerate(jsons):
         page = 1
         url = "https://www.strava.com/api/v3/activities"
         access_token = strava_tokens['access_token']
+        print("Access token is: ", access_token, " person is: ", csvs[i])
         # Create the dataframe ready for the API call to store your activity data
         activities = pd.DataFrame(
             columns=[
@@ -31,7 +32,6 @@ for i, token in enumerate(jsons):
             ]
         )
         while True:
-
             # get page of activities from Strava
             r = requests.get(url + '?access_token=' + access_token + '&per_page=200' + '&page=' + str(page))
             r = r.json()

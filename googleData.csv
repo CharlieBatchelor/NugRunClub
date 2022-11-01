@@ -1,6 +1,7 @@
 Name,Distance,NumRuns2k,NumRuns5k,NumRuns10k,TotalElevation,AveragePace,AvgElPerRun,GroupPace
-George,3.6437,1,0,0,33.5,5:36,33.5,0
-Rhys,4.1568000000000005,1,0,0,46.4,5:16,46.4,0
-Charlie,8.989799999999999,2,1,0,55.0,5:34,27.5,0
-Matthew,3.7058,1,0,0,36.2,5:11,18.1,0
-Finch,4.2285,1,0,0,45.7,4:44,45.7,5:12
+George,0.0,0,0,0,0,0,0,0
+Rhys,0.0,0,0,0,0,0,0,0
+Charlie,0.0,0,0,0,0,0,0,0
+Matthew,0.0,0,0,0,0,0,0,0
+Finch,0.0,0,0,0,0,0,0,0
+Jenny,0.0,0,0,0,0,0,0,5:12

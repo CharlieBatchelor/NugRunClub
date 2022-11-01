@@ -11,9 +11,11 @@ run = "Run"
 
 fig, axs = plt.subplots(3, sharex=True, sharey=True)
 fig.suptitle("Pace Analysis - < 5km, 5 - 10km, > 10km")
+fig.supylabel("Minutes per km")
 
-file_list = ['../charlieActivities.csv', '../matthewActivities.csv', '../georgeActivities.csv', '../rhysActivities.csv', "../finchActivities.csv"]
-names = ["Charlie", "Matthew", "George", "Rhys", "Finch"]
+file_list = ['../activities/charlieActivities.csv', '../activities/matthewActivities.csv', '../activities/georgeActivities.csv',
+             '../activities/rhysActivities.csv', "../activities/finchActivities.csv", "../activities/jennyActivities.csv"]
+names = ["Charlie", "Matthew", "George", "Rhys", "Finch", "Jenny"]
 
 for f, input_file in enumerate(file_list):
     activities = pd.read_csv(input_file, sep=',', header=0)
@@ -75,8 +77,8 @@ for f, input_file in enumerate(file_list):
     #         runs.append(allDistances[i])
     #         time.append(allTimes[i])
 
-plt.ylabel("Minutes per Kilometer")
 plt.xlabel("Run #")
+plt.xlim(-3, 30)
 plt.legend()
 plt.show()
 

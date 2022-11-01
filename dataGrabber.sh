@@ -28,11 +28,12 @@ RHYSTOKEN=$(echo $RHYSTOKEN | sed 's/"//g')
 # George
 curl -X POST https://www.strava.com/oauth/token\?client_id\=75401\&client_secret\=bb2111ddbaf0b4148ef1f9a632945e63fc6170b5\&grant_type\=refresh_token\&refresh_token\=729a07c75e183ea989b0c5b946b0683f5a8ebe20 > tokens/georgeToken.json
 GEORGETOKEN=$(/usr/local/bin/jq .access_token tokens/georgeToken.json)
-GEORGETOKEN=$(echo $GEORGETOKEN | sed 's/"//g') # Remove occurancees of "
+GEORGETOKEN=$(echo $GEORGETOKEN | sed 's/"//g')
+
 ## Jenny Token - Was used for testing, leaving here. Might use one day?
-#curl -X POST https://www.strava.com/oauth/token\?client_id\=75401\&client_secret\=bb2111ddbaf0b4148ef1f9a632945e63fc6170b5\&grant_type\=refresh_token\&refresh_token\=2aa5cdb6777ffb34d57400e9ccb61c1cb07aed45 > jennyToken.json
-#JENNYTOKEN=`/usr/local/bin/jq .access_token jennyToken.json`
-#JENNYTOKEN=$(cho $JENNYTOKEN | sed 's/"//g')
+curl -X POST https://www.strava.com/oauth/token\?client_id\=75401\&client_secret\=bb2111ddbaf0b4148ef1f9a632945e63fc6170b5\&grant_type\=refresh_token\&refresh_token\=2aa5cdb6777ffb34d57400e9ccb61c1cb07aed45 > tokens/jennyToken.json
+JENNYTOKEN=`/usr/local/bin/jq .access_token tokens/jennyToken.json`
+JENNYTOKEN=$(echo $JENNYTOKEN | sed 's/"//g')
 
 # ======================================================================================================================
 # Grab profiles data and pass to json files (for testing) - Might use profile info later, leaving in.
@@ -63,3 +64,7 @@ deactivate #deactivate virtual environment
 # ======================================================================================================================
 # Export the new updated data to Google docs:
 /usr/local/bin/tbx services google sheets sheet import -id 1cRPN6rl55R8WerMHN28qtz0nMM8c_L10Xa14srtAqPM  -range "Current Month" -data ./googleData.csv
+
+# ======================================================================================================================
+# Update the figures for the website:
+#python analysisGraphs/distancePieChart.py
