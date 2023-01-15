@@ -4,8 +4,11 @@ import pandas as pd
 import json
 import csv
 
-jsons = ["tokens/charlieToken.json", "tokens/georgeToken.json", "tokens/matthewToken.json", "tokens/rhysToken.json", "tokens/finchToken.json", "tokens/jennyToken.json"]
-csvs = ['charlieActivities.csv', 'georgeActivities.csv', 'matthewActivities.csv', 'rhysActivities.csv', "finchActivities.csv", "jennyActivities.csv"]
+# jsons = ["tokens/charlieToken.json", "tokens/georgeToken.json", "tokens/matthewToken.json", "tokens/rhysToken.json", "tokens/finchToken.json", "tokens/jennyToken.json"]
+# csvs = ['charlieActivities.csv', 'georgeActivities.csv', 'matthewActivities.csv', 'rhysActivities.csv', "finchActivities.csv", "jennyActivities.csv"]
+
+jsons = ["tokens/charlieToken.json", "tokens/georgeToken.json", "tokens/matthewToken.json", "tokens/rhysToken.json", "tokens/finchToken.json"]
+csvs = ['charlieActivities.csv', 'georgeActivities.csv', 'matthewActivities.csv', 'rhysActivities.csv', "finchActivities.csv"]
 
 for i, token in enumerate(jsons):
     # Get the tokens from file to connect to Strava

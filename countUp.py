@@ -4,10 +4,12 @@ import pandas as pd
 from datetime import datetime
 
 # My files to use when updating the google dataframe
+# file_list = ['charlieActivities.csv', 'matthewActivities.csv', 'georgeActivities.csv',
+#              'rhysActivities.csv', "finchActivities.csv", "jennyActivities.csv"]
 file_list = ['charlieActivities.csv', 'matthewActivities.csv', 'georgeActivities.csv',
-             'rhysActivities.csv', "finchActivities.csv", "jennyActivities.csv"]
+             'rhysActivities.csv', "finchActivities.csv"]
 
-names = ["Charlie", "Matthew", "George", "Rhys", "Finch", "Jenny"]
+names = ["Charlie", "Matthew", "George", "Rhys", "Finch"]
 
 # Read google sheet data to a data frame
 googleData = pd.read_csv("googleData.csv")
