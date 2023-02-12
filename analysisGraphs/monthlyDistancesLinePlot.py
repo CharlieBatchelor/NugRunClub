@@ -11,7 +11,7 @@ from dateutil.relativedelta import *
 
 # Variables
 run = "Run"
-numMonths = 24  # Number of months to go back
+numMonths = 12  # Number of months to go back
 names = ["Charlie", "Matthew", "George", "Rhys", "Finch"]
 file_list = ['../activities/charlieActivities.csv', '../activities/matthewActivities.csv', '../activities/georgeActivities.csv',
              '../activities/rhysActivities.csv', "../activities/finchActivities.csv"]
@@ -21,7 +21,7 @@ now = datetime(datetime.now().year, datetime.now().month, 1)
 then = (now + relativedelta(months=-numMonths))
 months_list = []
 while then <= now:
-    then += timedelta(days=32) # This should shift us to the next month
+    then += timedelta(days=32)  # This should shift us to the next month
     months_list.append(datetime(then.year, then.month, 1).strftime('%Y-%m'))
 
 # Set up figure space
