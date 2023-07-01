@@ -6,7 +6,7 @@
 # the total running distance for each user. tbx is then used to upload the updated distances to google sheets.
 # ======================================================================================================================
 # Move to appropriate directory and remove old(current) relevant files
-cd /Users/s2112263/Projects/RunClub || exit
+cd /Users/s2112263/PycharmProjects/RunClub || exit
 # ======================================================================================================================
 # Renew access tokens and set <NAME>TOKEN variable for each user
 # Charlie
@@ -51,16 +51,16 @@ GEORGETOKEN=$(echo $GEORGETOKEN | sed 's/"//g')
 
 # ======================================================================================================================
 # Run python code to get all activities for all group and pass to <name>Activities.json file
-source ./venv/bin/activate # activate virtual environment
-python getActivities.py
+source /Users/s2112263/.virtualenvs/DUNEDAQ/bin/activate # activate virtual environment
+python3 getActivities.py
 
 # ======================================================================================================================
 # [REDUNDANT] Download RunClub spreadsheet from google docs - Can remove once everyone is authorised
 #/usr/local/bin/tbx services google sheets sheet export -id 1cRPN6rl55R8WerMHN28qtz0nMM8c_L10Xa14srtAqPM --range "Current Month" -data ./googleData.csv
 /usr/local/bin/tbx2 services google sheets sheet export -id 1cRPN6rl55R8WerMHN28qtz0nMM8c_L10Xa14srtAqPM  -range "Current Month" -data ./googleData.csv
 # countUp.py script tallies total running distances for the week and saves each to a googleData.csv file
-python countUp.py
-python analysisGraphs/distancePieChart.py # Update picture for webpage
+python3 countUp.py
+#python3 analysisGraphs/distancePieChart.py # Update picture for webpage
 deactivate #deactivate virtual environment
 
 # ======================================================================================================================

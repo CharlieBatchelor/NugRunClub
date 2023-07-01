@@ -1,8 +1,8 @@
 import requests
-from pandas import json_normalize
+# from pandas import jspipon_normalize
 import pandas as pd
 import json
-import csv
+# import csv
 
 # jsons = ["tokens/charlieToken.json", "tokens/georgeToken.json", "tokens/matthewToken.json", "tokens/rhysToken.json", "tokens/finchToken.json", "tokens/jennyToken.json"]
 # csvs = ['charlieActivities.csv', 'georgeActivities.csv', 'matthewActivities.csv', 'rhysActivities.csv', "finchActivities.csv", "jennyActivities.csv"]
