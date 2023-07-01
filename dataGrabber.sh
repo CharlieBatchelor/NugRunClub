@@ -69,4 +69,4 @@ deactivate #deactivate virtual environment
 
 # ======================================================================================================================
 # Update the figures for the website:
-#python analysisGraphs/distancePieChart.py
+python analysisGraphs/distancePieChart.py
