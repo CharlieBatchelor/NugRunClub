@@ -8,11 +8,23 @@ import numpy as np
 
 def create_pie_chart(values, labels, date):
     """
-    Creates a nice Pie Chart of from two lists:
+    Creates a nice Pie Chart from two lists, ensuring matching values and labels.
     :param values: The values to be represented by the chart.
-    :param labels: The labels corresponding to each value
+    :param labels: The labels corresponding to each value.
+    :param date: The date for the chart title.
     :return: The plotted figure object.
     """
+    if len(values) != len(labels):
+        raise ValueError("Number of values and labels must be equal.")
+
+    # Filter out zero or negative values and their corresponding labels
+    filtered_values = []
+    filtered_labels = []
+    for val, lbl in zip(values, labels):
+        if val > 0:
+            filtered_values.append(val)
+            filtered_labels.append(lbl)
+
     # Create a figure and axis
     fig, ax = plt.subplots()
 
@@ -20,7 +32,7 @@ def create_pie_chart(values, labels, date):
     plt.style.use('seaborn-whitegrid')
 
     # Create the pie chart
-    wedges, _, autotexts = ax.pie(values, labels=labels, autopct='%1.1f%%', startangle=90)
+    wedges, _, autotexts = ax.pie(filtered_values, labels=filtered_labels, autopct='%1.1f%%', startangle=90)
 
     # Set font size and color for the percentage labels
     for autotext in autotexts:
@@ -34,7 +46,7 @@ def create_pie_chart(values, labels, date):
     # Equal aspect ratio ensures that pie is drawn as a circle
     ax.axis('equal')
 
-    # Save chart to webserver area
+    # Save chart to the web server area
     plt.savefig("website/frontend/images/pie.png")
 
     return fig
