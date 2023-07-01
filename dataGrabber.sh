@@ -6,7 +6,7 @@
 # the total running distance for each user. tbx is then used to upload the updated distances to google sheets.
 # ======================================================================================================================
 # Move to appropriate directory and remove old(current) relevant files
-cd /Users/s2112263/Projects/RunClub || exit
+#cd /Users/s2112263/Projects/RunClub || exit
 # ======================================================================================================================
 # Renew access tokens and set <NAME>TOKEN variable for each user
 # Charlie
