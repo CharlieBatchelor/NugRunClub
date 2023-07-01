@@ -96,28 +96,28 @@ jenny_token = subprocess.run([
 ], capture_output=True, text=True).stdout.strip()[1:-1]
 
 # Run python code to get all activities for all group and pass to <name>Activities.json file
-subprocess.run(["source", "./venv/bin/activate"], shell=True)  # activate virtual environment
+# subprocess.run(["source", "./venv/bin/activate"], shell=True)  # activate virtual environment
 subprocess.run(["python", "getActivities.py"])
 
 # [REDUNDANT] Download RunClub spreadsheet from google docs - Can remove once everyone is authorised
-subprocess.run([
-    "/usr/local/bin/tbx2",
-    "services",
-    "google",
-    "sheets",
-    "sheet",
-    "export",
-    "-id",
-    "1cRPN6rl55R8WerMHN28qtz0nMM8c_L10Xa14srtAqPM",
-    "-range",
-    "Current Month",
-    "-data",
-    "./googleData.csv"
-])
+# subprocess.run([
+#     "/usr/local/bin/tbx2",
+#     "services",
+#     "google",
+#     "sheets",
+#     "sheet",
+#     "export",
+#     "-id",
+#     "1cRPN6rl55R8WerMHN28qtz0nMM8c_L10Xa14srtAqPM",
+#     "-range",
+#     "Current Month",
+#     "-data",
+#     "./googleData.csv"
+# ])
 
 # countUp.py script tallies total running distances for the week and saves each to a googleData.csv file
 subprocess.run(["python", "countUp.py"])
-subprocess.run(["deactivate"], shell=True)  # deactivate virtual environment
+# subprocess.run(["deactivate"], shell=True)  # deactivate virtual environment
 
 # Export the new updated data to Google docs
 subprocess.run(["python", "update_sheet.py"])

@@ -35,7 +35,7 @@ def create_pie_chart(values, labels, date):
     ax.axis('equal')
 
     # Save chart to webserver area
-    plt.savefig("../website/frontend/images/pie.png")
+    plt.savefig("website/frontend/images/pie.png")
 
     return fig
 
@@ -45,7 +45,7 @@ stringDate = now.strftime("%d-%m-%Y")
 # stringDate = "2022-07"
 
 # I think paths have to be relative to the dataGrabber.sh script!
-counted_data = np.genfromtxt("../googleData.csv", delimiter=",")
+counted_data = np.genfromtxt("googleData.csv", delimiter=",")
 counted_data = counted_data.transpose()
 
 # Pie chart, where the slices will be ordered and plotted counter-clockwise:

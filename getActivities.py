@@ -1,13 +1,24 @@
+print("Getting activities")
 import requests
-from pandas import json_normalize
+print("Got requests")
+# import pandas
+# print("Got pandas")
 import pandas as pd
+print("Got pandas again")
 import json
+print("Got JSON")
 import csv
+print("Got CSV")
+
+print("Modules imported.")
 
 jsons = ["tokens/charlieToken.json", "tokens/georgeToken.json", "tokens/matthewToken.json", "tokens/rhysToken.json", "tokens/finchToken.json", "tokens/jennyToken.json"]
 csvs = ['charlieActivities.csv', 'georgeActivities.csv', 'matthewActivities.csv', 'rhysActivities.csv', "finchActivities.csv", "jennyActivities.csv"]
 
+print("Getting activities")
+
 for i, token in enumerate(jsons):
+    print(f"Getting acts for {i}")
     # Get the tokens from file to connect to Strava
     with open(token) as json_file:
         strava_tokens = json.load(json_file)

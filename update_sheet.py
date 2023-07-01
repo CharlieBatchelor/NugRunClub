@@ -6,7 +6,7 @@ spreadsheet_id = '1cRPN6rl55R8WerMHN28qtz0nMM8c_L10Xa14srtAqPM'
 sheet_name = 'Current Month'
 
 # Define the path to your service account credentials JSON file
-credentials_file = 'runclub-338918-bb3e56842c7f.json.json'
+credentials_file = 'runclub-338918-bb3e56842c7f.json'
 
 # Authorize and authenticate with Google Sheets API
 scope = ['https://spreadsheets.google.com/feeds', 'https://www.googleapis.com/auth/drive']
