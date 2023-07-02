@@ -124,3 +124,7 @@ subprocess.run(["python", "update_sheet.py"])
 
 # Update the figures for the website
 subprocess.run(["python", "analysisGraphs/distancePieChart.py"])
+
+# Check last months results, create the pie.
+subprocess.run(["python", "lastMonthsResults.py"])
+subprocess.run(["python", "analysisGraphs/lastMonthsCharts.py"])
