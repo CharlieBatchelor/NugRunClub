@@ -19,7 +19,7 @@ current_date = datetime.now()
 last_month_date = current_date - timedelta(days=current_date.day)
 
 # Format the last month's date as YY-MM
-stringDate = last_month_date.strftime('%y-%m')
+stringDate = last_month_date.strftime('%Y-%m')
 
 print(f"Building up chart of results from last month: {stringDate}")
 # stringDate = '2022-07' #artificial string to pull back month 2022-xx
@@ -53,7 +53,9 @@ for i, input_file in enumerate(file_list):
 
     # Tally up the stuff we want to send to google doc
     for j in range(no_acts):
+        print(f"Looking at {input_file} users activtiess")
         start_date = date[j][0:7]
+        print(f"String date from act is {start_date}, formatted one is {stringDate}")
         if type[j] == run and start_date == stringDate and dis[j] != 0 and mov_t[j] != 0:
             tot_distance += dis[j]
             tot_el += elev[j]
