@@ -72,4 +72,4 @@ print(f"Names: {names}")
 print(f"Labels: {labels}")
 
 # Create and save the updated pie
-create_pie_chart(distances, names, stringDate)
+create_pie_chart(distances, labels, stringDate)
