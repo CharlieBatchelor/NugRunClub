@@ -8,13 +8,15 @@ export default class extends AbstractView {
 
     async getHtml() {
         return `
-            <h1> Recent Posts</h1>
+            <h2>Results of Last Month</h2>
             <p>
-                So maybe here goes some posts, comments on runs etc...
+                This page shows the results from the previous month. Maybe add some tables,
+                yearly progress etc...?       
             </p>
+            <img src="images/lastMonthsPie.png" alt="Previous Pie" style="max-width: 100%; height: auto;">
             <p>
-                <a href="/" data-link>Back to Dashboard...</a>.
+                <a href="/" data-link>Back to current month...</a>.
             </p>
-        `;        
+        `;
     }
 }
