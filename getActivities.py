@@ -50,6 +50,8 @@ for i, token in enumerate(jsons):
             if not r:
                 break
 
+            print(f"Results for {i} looks like: {r}")
+
             # otherwise add new data to dataframe
             for x in range(len(r)):
                 activities.loc[x + (page - 1) * 200, 'id'] = r[x]['id']
