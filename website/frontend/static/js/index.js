@@ -1,6 +1,8 @@
 import Dashboard from "./views/Dashboard.js";
 import Settings from "./views/Settings.js";
 import Posts from "./views/Posts.js";
+import CurrentMonth from "./views/CurrentMonth.js";
+import LastMonth from "./views/LastMonth.js";
 
 const navigateTo = url => {
     history.pushState(null, null, url);
@@ -11,7 +13,9 @@ const router = async () => {
     const routes = [
         { path: "/", view: Dashboard },
         { path: "/posts", view: Posts  },
-        { path: "/settings", view: Settings  }
+        { path: "/settings", view: Settings },
+        { path: "/currentMonth", view: CurrentMonth },
+        { path: "/lastMonth", view: LastMonth }
     ];
 
     // Test each route for potential match
