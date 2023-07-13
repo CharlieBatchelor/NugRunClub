@@ -120,7 +120,7 @@ subprocess.run(["python", "countUp.py"])
 # subprocess.run(["deactivate"], shell=True)  # deactivate virtual environment
 
 # Export the new updated data to Google docs
-subprocess.run(["python", "update_sheet.py"])
+# subprocess.run(["python", "update_sheet.py"])
 
 # Update the figures for the website
 subprocess.run(["python", "analysisGraphs/distancePieChart.py"])
