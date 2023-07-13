@@ -77,6 +77,3 @@ explode[distances.argmax()] = 0.1
 fig = create_pie_chart(distances, labels, stringDate)
 
 # plt.show()
-
-
-

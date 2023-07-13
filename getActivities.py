@@ -1,19 +1,9 @@
-print("Getting activities")
 import requests
-print("Got requests")
-# import pandas
-# print("Got pandas")
 import pandas as pd
-print("Got pandas again")
 import json
-print("Got JSON")
-import csv
-print("Got CSV")
 
-print("Modules imported.")
-
-jsons = ["tokens/charlieToken.json", "tokens/georgeToken.json", "tokens/matthewToken.json", "tokens/rhysToken.json", "tokens/finchToken.json", "tokens/jennyToken.json"]
-csvs = ['charlieActivities.csv', 'georgeActivities.csv', 'matthewActivities.csv', 'rhysActivities.csv', "finchActivities.csv", "jennyActivities.csv"]
+jsons = ["tokens/charlieToken.json", "tokens/georgeToken.json", "tokens/matthewToken.json", "tokens/rhysToken.json", "tokens/finchToken.json"]
+csvs = ['charlieActivities.csv', 'georgeActivities.csv', 'matthewActivities.csv', 'rhysActivities.csv', "finchActivities.csv"]
 
 print("Getting activities")
 

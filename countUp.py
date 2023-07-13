@@ -5,12 +5,18 @@ from datetime import datetime
 
 # My files to use when updating the google dataframe
 file_list = ['charlieActivities.csv', 'matthewActivities.csv', 'georgeActivities.csv',
-             'rhysActivities.csv', "finchActivities.csv", "jennyActivities.csv"]
+             'rhysActivities.csv', "finchActivities.csv"]
 
-names = ["Charlie", "Matthew", "George", "Rhys", "Finch", "Jenny"]
+names = ["Charlie", "Matthew", "George", "Rhys", "Finch"]
 
-# Read google sheet data to a data frame
-googleData = pd.read_csv("googleData.csv")
+all_avg_elevations = []
+all_paces = []
+all_tot_elevations = []
+all_tot_10k = []
+all_tot_5k = []
+all_tot_2k = []
+all_tot_distance = []
+
 # Date Variable - eg 2022-02-01
 now = datetime.now()
 stringDate = now.strftime("%Y-%m")
@@ -74,17 +80,30 @@ for i, input_file in enumerate(file_list):
         if all_runs == 0:
             pace = str(0)
 
-    for k, n in enumerate(googleData["Name"]):
-        if n == names[i]:
-            googleData.loc[k, "Distance"] = tot_distance/1000
-            googleData.loc[k, "NumRuns2k"] = total_2k
-            googleData.loc[k, "NumRuns5k"] = total_5k
-            googleData.loc[k, "NumRuns10k"] = total_10k
-            googleData.loc[k, "TotalElevation"] = tot_el
-            googleData.loc[k, "AveragePace"] = pace
-            googleData.loc[k, "AvgElPerRun"] = avg_el
+    all_tot_distance.append(tot_distance/1000)
+    all_tot_2k.append(total_2k)
+    all_tot_5k.append(total_5k)
+    all_tot_10k.append(total_10k)
+    all_tot_elevations.append(tot_el)
+    all_paces.append(pace)
+    all_avg_elevations.append(avg_el)
 
-print(googleData.to_string())
+# Create a dictionary using the lists
+data = {
+    "Name": names,
+    "Distance": all_tot_distance,
+    "NumRuns2k": all_tot_2k,
+    "NumRuns5k": all_tot_5k,
+    "NumRuns10k": all_tot_10k,
+    "TotalElevation": all_tot_elevations,
+    "Pace": all_paces,
+    "AvgElPerRun": all_avg_elevations
+}
+
+# Create the pandas DataFrame
+googleData = pd.DataFrame(data)
+
+# print(googleData.to_string())
 googleData.to_csv("googleData.csv", index=False)
 
 

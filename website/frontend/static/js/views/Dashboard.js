@@ -8,7 +8,11 @@ export default class extends AbstractView {
 
     async getHtml() {
         return `
+<<<<<<< HEAD
+            <h1>Nug Run Club 2023!</h1>
+=======
             <h2>Nug Run Club 2023!</h2>
+>>>>>>> c46b4567611d73d7a2b6937b843387af7dd77092
             <p>
                 Watch this space! Here we'll put the current month pie with some graphs of current progress.       
             </p>
