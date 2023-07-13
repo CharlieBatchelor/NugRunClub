@@ -4,8 +4,6 @@ import pandas as pd
 from datetime import datetime
 
 # My files to use when updating the google dataframe
-# file_list = ['charlieActivities.csv', 'matthewActivities.csv', 'georgeActivities.csv',
-#              'rhysActivities.csv', "finchActivities.csv", "jennyActivities.csv"]
 file_list = ['charlieActivities.csv', 'matthewActivities.csv', 'georgeActivities.csv',
              'rhysActivities.csv', "finchActivities.csv"]
 
@@ -19,9 +17,6 @@ all_tot_5k = []
 all_tot_2k = []
 all_tot_distance = []
 
-
-# Read google sheet data to a data frame
-# googleData = pd.read_csv("googleData.csv")
 # Date Variable - eg 2022-02-01
 now = datetime.now()
 stringDate = now.strftime("%Y-%m")
@@ -92,18 +87,6 @@ for i, input_file in enumerate(file_list):
     all_tot_elevations.append(tot_el)
     all_paces.append(pace)
     all_avg_elevations.append(avg_el)
-
-
-
-    # for k, n in enumerate(googleData["Name"]):
-    #     if n == names[i]:
-    #         googleData.loc[k, "Distance"] = tot_distance/1000
-    #         googleData.loc[k, "NumRuns2k"] = total_2k
-    #         googleData.loc[k, "NumRuns5k"] = total_5k
-    #         googleData.loc[k, "NumRuns10k"] = total_10k
-    #         googleData.loc[k, "TotalElevation"] = tot_el
-    #         googleData.loc[k, "AveragePace"] = pace
-    #         googleData.loc[k, "AvgElPerRun"] = avg_el
 
 # Create a dictionary using the lists
 data = {
