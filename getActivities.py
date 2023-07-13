@@ -5,7 +5,10 @@ import json
 jsons = ["tokens/charlieToken.json", "tokens/georgeToken.json", "tokens/matthewToken.json", "tokens/rhysToken.json", "tokens/finchToken.json"]
 csvs = ['charlieActivities.csv', 'georgeActivities.csv', 'matthewActivities.csv', 'rhysActivities.csv', "finchActivities.csv"]
 
+print("Getting activities")
+
 for i, token in enumerate(jsons):
+    print(f"Getting acts for {i}")
     # Get the tokens from file to connect to Strava
     with open(token) as json_file:
         strava_tokens = json.load(json_file)
@@ -36,6 +39,8 @@ for i, token in enumerate(jsons):
             # if no results then exit loop
             if not r:
                 break
+
+            print(f"Results for {i} looks like: {r}")
 
             # otherwise add new data to dataframe
             for x in range(len(r)):

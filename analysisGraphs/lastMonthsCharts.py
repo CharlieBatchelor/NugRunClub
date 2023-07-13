@@ -1,9 +1,11 @@
 # =====================================================
-# Analysis script, plots the normal pie chart!
+# Analysis script, plots the normal pie chart and leader table
+# from previous month.
+
 import pandas as pd
 from matplotlib import pyplot as plt
 import sys
-from datetime import datetime
+from datetime import datetime, timedelta
 import numpy as np
 
 def create_pie_chart(values, labels, date):
@@ -47,33 +49,27 @@ def create_pie_chart(values, labels, date):
     ax.axis('equal')
 
     # Save chart to the web server area
-    plt.savefig("website/frontend/images/pie.png")
+    plt.savefig("website/frontend/images/lastMonthsPie.png")
 
-    return fig
+# read data
+data = pd.read_csv("lastMonthsData.csv")
+distances = data["Distance"].tolist()
+names = data["Name"].tolist()
+labels = []
 
-# date
-now = datetime.now()
-stringDate = now.strftime("%d-%m-%Y")
-# stringDate = "2022-07"
-
-# I think paths have to be relative to the dataGrabber.sh script!
-counted_data = np.genfromtxt("googleData.csv", delimiter=",")
-counted_data = counted_data.transpose()
-
-# Pie chart, where the slices will be ordered and plotted counter-clockwise:
-distances = counted_data[1][1:]
-distances = np.array(distances)
-labels = ["George", "Rhys", "Charlie", "Matthew", "Finch"]
+#Get last months date:
+current_date = datetime.now()
+last_month_date = current_date - timedelta(days=current_date.day)
+stringDate = last_month_date.strftime('%Y-%m')
 
 # Make better labels:
-for i, l in enumerate(labels):
+for i, l in enumerate(names):
     d = round(distances[i], 2)
-    labels[i] = l + " " + str(d) + "km"
+    labels.append(l + " " + str(d) + "km")
 
-explode = np.zeros(len(distances))
-print(distances.argmax())
-explode[distances.argmax()] = 0.1
+print(f"Distances: {distances}")
+print(f"Names: {names}")
+print(f"Labels: {labels}")
 
-fig = create_pie_chart(distances, labels, stringDate)
-
-# plt.show()
+# Create and save the updated pie
+create_pie_chart(distances, labels, stringDate)

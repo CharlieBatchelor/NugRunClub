@@ -10,4 +10,9 @@ app.get("/*", (req, res) => {
     res.sendFile(path.resolve("frontend", "index.html"));
 });
 
-app.listen(process.env.PORT || 8080, () => console.log("Server running..."));
+const port = process.env.PORT || 8080;
+const host = '0.0.0.0'; // Listen on all available network interfaces
+
+app.listen(port, host, () => {
+    console.log(`Server running on http://${host}:${port}`);
+});
