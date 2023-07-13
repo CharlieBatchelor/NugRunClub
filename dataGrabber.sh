@@ -57,7 +57,8 @@ python3 getActivities.py
 # ======================================================================================================================
 # [REDUNDANT] Download RunClub spreadsheet from google docs - Can remove once everyone is authorised
 #/usr/local/bin/tbx services google sheets sheet export -id 1cRPN6rl55R8WerMHN28qtz0nMM8c_L10Xa14srtAqPM --range "Current Month" -data ./googleData.csv
-/usr/local/bin/tbx2 services google sheets sheet export -id 1cRPN6rl55R8WerMHN28qtz0nMM8c_L10Xa14srtAqPM  -range "Current Month" -data ./googleData.csv
+#/usr/local/bin/tbx2 services google sheets sheet export -id 1cRPN6rl55R8WerMHN28qtz0nMM8c_L10Xa14srtAqPM  -range "Current Month" -data ./googleData.csv
+
 # countUp.py script tallies total running distances for the week and saves each to a googleData.csv file
 python3 countUp.py
 #python3 analysisGraphs/distancePieChart.py # Update picture for webpage
