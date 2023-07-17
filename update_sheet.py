@@ -22,7 +22,10 @@ worksheet = sheet.worksheet(sheet_name)
 # Read the local CSV file
 csv_file = 'googleData.csv'
 with open(csv_file, 'r') as file:
-    csv_data = file.read()
+    csv_data = file.readlines()
+
+# Parse CSV data into a 2D list
+csv_data = [row.strip().split(',') for row in csv_data]
 
 # Update the sheet with CSV data
 worksheet.update('A1', csv_data)
