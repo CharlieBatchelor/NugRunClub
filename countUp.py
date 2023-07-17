@@ -95,7 +95,6 @@ all_tot_5k = ["{:.2f}".format(distance) for distance in all_tot_5k]
 all_tot_10k = ["{:.2f}".format(distance) for distance in all_tot_10k]
 all_tot_elevations = ["{:.2f}".format(distance) for distance in all_tot_elevations]
 all_avg_elevations = ["{:.2f}".format(distance) for distance in all_avg_elevations]
-all_paces = ["{:.2f}".format(distance) for distance in all_paces]
 
 data = {
     "Name": names,
