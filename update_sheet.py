@@ -27,6 +27,14 @@ with open(csv_file, 'r') as file:
 # Parse CSV data into a 2D list
 csv_data = [row.strip().split(',') for row in csv_data]
 
+# Convert numerical values to appropriate data types
+for row in csv_data:
+    for i, value in enumerate(row):
+        try:
+            row[i] = float(value)
+        except ValueError:
+            pass
+
 # Update the sheet with CSV data
 worksheet.update('A1', csv_data)
 
