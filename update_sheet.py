@@ -24,17 +24,10 @@ csv_file = 'googleData.csv'
 with open(csv_file, 'r') as file:
     csv_data = file.readlines()
 
-# Parse CSV data into a 2D list and remove leading/trailing whitespace
+# Parse CSV data into a 2D list
 csv_data = [row.strip().split(',') for row in csv_data]
 
-# Create a new 2D list with numerical values as numbers (without leading "'")
-csv_data_numeric = [[float(cell) if cell.isnumeric() else cell for cell in row] for row in csv_data]
-
-# Get the range of cells to update
-start_cell = 'A1'
-end_cell = chr(ord('A') + len(csv_data_numeric[0]) - 1) + str(len(csv_data_numeric))
-
-# Update the sheet with CSV data as numbers
-worksheet.update_cells(worksheet.range(f'{start_cell}:{end_cell}'), csv_data_numeric, value_input_option='USER_ENTERED')
+# Update the sheet with CSV data
+worksheet.update('A1', csv_data)
 
 print('Google Sheet updated successfully.')
