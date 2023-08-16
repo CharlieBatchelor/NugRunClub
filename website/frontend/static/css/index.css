@@ -59,11 +59,11 @@ a {
 /* Media Query for Mobile */
 @media (max-width: 768px) {
     .nav {
-        left: -100%; /* Hide the navigation panel by default */
+        top: 0; /* Hide the navigation panel by default */
     }
 
     .nav.active {
-        left: 0; /* Show the navigation panel when active */
+        top: 0; /* Show the navigation panel when active */
     }
 
     body {
