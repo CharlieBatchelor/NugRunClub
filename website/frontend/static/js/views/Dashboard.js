@@ -12,7 +12,7 @@ export default class extends AbstractView {
             <p>
                 Watch this space! Here we'll put the current month pie with some graphs of current progress.       
             </p>
-            <img src="images/pie.png" alt="Current Pie" style="max-width: 100%; height: auto; width: 70%;">
+            <img src="images/pie.png" alt="Current Pie" style="max-width: 100%; height: auto; width: 100%;">
             <p>
                 <a href="/lastMonth" data-link>View previous month winners...</a>.
             </p>
