@@ -33,26 +33,29 @@ for i, token in enumerate(jsons):
             ]
         )
         while True:
-            # get page of activities from Strava
             r = requests.get(url + '?access_token=' + access_token + '&per_page=200' + '&page=' + str(page))
             r = r.json()
-            # if no results then exit loop
             if not r:
                 break
 
-            # otherwise add new data to dataframe
+            # Calculate the starting index for the current page
+            start_index = (page - 1) * 200
+
+            print(f"r looks like {r}")
+
             for x in range(len(r)):
-                activities.loc[x + (page - 1) * 200, 'id'] = r[x]['id']
-                activities.loc[x + (page - 1) * 200, 'name'] = r[x]['name']
-                activities.loc[x + (page - 1) * 200, 'start_date_local'] = r[x]['start_date_local']
-                activities.loc[x + (page - 1) * 200, 'type'] = r[x]['type']
-                activities.loc[x + (page - 1) * 200, 'distance'] = r[x]['distance']
-                activities.loc[x + (page - 1) * 200, 'moving_time'] = r[x]['moving_time']
-                activities.loc[x + (page - 1) * 200, 'elapsed_time'] = r[x]['elapsed_time']
-                activities.loc[x + (page - 1) * 200, 'total_elevation_gain'] = r[x]['total_elevation_gain']
-                activities.loc[x + (page - 1) * 200, 'end_latlng'] = r[x]['end_latlng']
-                activities.loc[x + (page - 1) * 200, 'external_id'] = r[x]['external_id']
-            # increment page
+                current_index = start_index + x
+                activities.loc[current_index, 'id'] = r[x]['id']
+                activities.loc[current_index, 'name'] = r[x]['name']
+                activities.loc[current_index, 'start_date_local'] = r[x]['start_date_local']
+                activities.loc[current_index, 'type'] = r[x]['type']
+                activities.loc[current_index, 'distance'] = r[x]['distance']
+                activities.loc[current_index, 'moving_time'] = r[x]['moving_time']
+                activities.loc[current_index, 'elapsed_time'] = r[x]['elapsed_time']
+                activities.loc[current_index, 'total_elevation_gain'] = r[x]['total_elevation_gain']
+                activities.loc[current_index, 'end_latlng'] = r[x]['end_latlng']
+                activities.loc[current_index, 'external_id'] = r[x]['external_id']
+
             page += 1
 
     activity_loc = "./activities/" + str(csvs[i])
