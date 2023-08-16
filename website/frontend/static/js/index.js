@@ -45,6 +45,15 @@ const router = async () => {
 window.addEventListener("popstate", router);
 
 document.addEventListener("DOMContentLoaded", () => {
+
+    // Add the event listener for the navigation toggle button
+    const navToggle = document.querySelector(".nav-toggle");
+    const nav = document.querySelector(".nav");
+
+    navToggle.addEventListener("click", () => {
+        nav.classList.toggle("active");
+    });
+
     // Prevent default of reloading the page, and use navigateTo function
     document.body.addEventListener("click", e => {
         if (e.target.matches("[data-link]")) {
@@ -52,6 +61,7 @@ document.addEventListener("DOMContentLoaded", () => {
             navigateTo(e.target.href);
         }
     });
+
     router();
 });
 
